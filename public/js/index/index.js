@@ -1,4 +1,4 @@
-angular.module('RoutingApp', ['ngRoute','RegApp','SinginApp','AdminApp'])
+angular.module('RoutingApp', ['Helper','ngRoute','RegApp','SinginApp','AdminApp'])
     .config( ['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', {
