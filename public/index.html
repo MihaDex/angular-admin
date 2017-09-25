@@ -38,7 +38,14 @@
         </div>
     </nav>
 </div>
-
+    <div ng-controller="IndexCrt">
+        <div  ng-hide="alert.hide" class="alert {{alert.class}}"  role="alert">
+            <button ng-click="clickAlert()" type="button" class="close" aria-label="Close">
+                <span>&times;</span>
+            </button>
+            {{alert.text}}
+        </div>
+    </div>
     <div ng-view></div>
 
     <footer class="footer">
