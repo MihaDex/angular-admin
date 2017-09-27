@@ -81,7 +81,7 @@ angular.module('RoutingApp', ['Helper','ngRoute','RegApp','SinginApp','AdminApp'
                 $rootScope.logState(false);
                 $rootScope.navpos(1);
         };
-
+        $rootScope.clickOut = $scope.clickOut;
         $scope.clickAlert = function () {
             $scope.alert ={
                 hide: true
