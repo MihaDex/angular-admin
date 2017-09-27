@@ -1,5 +1,5 @@
 angular.module('RegApp',[])
-    .controller('RegCrt', function ($scope,$rootScope,$http) {
+    .controller('RegCrt', function ($scope,$rootScope,$http,$location) {
         $rootScope.navpos(2);
         $scope.reg = function () {
             if ($scope.password === $scope.password1 && $scope.email && $scope.password) {
@@ -15,6 +15,8 @@ angular.module('RegApp',[])
                             auth: true,
                             token: resp.data.token
                         };
+                        $rootScope.logState(true);
+                        $location.path('/admin');
                     }
                     else {
                         $rootScope.alert (0, "Такой пользователь уже существует");

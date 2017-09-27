@@ -27,14 +27,13 @@ class User
         }
     }
     public function getToken($email, $password){
-        foreach ($this->users as $item){
-            if($item['email']===$email && $item['password']===$this->makeHash($password)){
-                return $item['token'];
-            }
-        }
-        if(!$this->searchByEmail($email)){
-            return false;
-        }
+        $resp = $this->DBH->prepare('select token from users where email=? and password=?');
+        $resp->execute([$email,$this->makeHash($password)]);
+        $resp->setFetchMode(PDO::FETCH_OBJ);
+        $row = $resp->fetch();
+        if(isset($row)){
+            return $row->token;
+        } else return false;
     }
     private function searchByEmail($email){
             $STH = $this->DBH->prepare("SELECT * from users WHERE email=?");

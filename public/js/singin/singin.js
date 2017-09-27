@@ -1,5 +1,5 @@
 angular.module('SinginApp',[])
-    .controller('SinginCrt', function ($scope,$rootScope,$http) {
+    .controller('SinginCrt', function ($scope,$rootScope,$http,$location) {
         $rootScope.navpos(3);
         $scope.login = function () {
             if($scope.email && $scope.password) {
@@ -17,6 +17,7 @@ angular.module('SinginApp',[])
                             auth: true
                         };
                         $rootScope.logState(true);
+                        $location.path('/admin');
                     } else {
                         $rootScope.alert (0, "Нет такого пользователя!");
                     }

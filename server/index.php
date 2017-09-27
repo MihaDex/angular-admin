@@ -2,14 +2,14 @@
 header('Content-Type: application/json');
 include 'User.php';
 $users = new User('localhost', 'angadmin', 'root', '');
-$user = ["email"=>"dexmax89@mail.ru","password"=>"123","token"=>"123123123123"];
 
 if(isset($_POST['type']) && isset($_POST['email']) && isset($_POST['password']) && $_POST['type']=="login"){
-    if($_POST['email']==$user['email'] && $_POST['password']==$user['password']){
-        echo json_encode(["auth"=>true,"token"=>$user['token']]);
+    $token = $users->getToken($_POST['email'], $_POST['password']);
+    if($token){
+        echo json_encode(['auth'=>true, 'token'=>$token]);
     }
-    else{
-        echo json_encode(["auth"=>false]);
+    else {
+        echo json_encode(['auth'=>false]);
     }
 }
 if(isset($_POST['type']) && isset($_POST['email']) && isset($_POST['password']) && $_POST['type']=="registration"){
