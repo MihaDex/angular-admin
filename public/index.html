@@ -16,29 +16,35 @@
 </head>
 <body ng-app="RoutingApp">
 <div class="container">
-    <div class="masthead">
-    <h3 class="text-muted">Power Point</h3>
-
-    <nav class="navbar navbar-expand-sm navbar-light bg-light rounded mb-3">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav text-md-center nav-justified w-100">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Домой <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#!/reg">Регистрация</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#!/admin">Управление</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
     <div ng-controller="IndexCrt">
+        <div class="masthead">
+            <h3 class="text-muted">Power Point</h3>
+
+            <nav class="navbar navbar-expand-sm navbar-light bg-light rounded mb-3">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav text-md-center nav-justified w-100">
+                        <li ng-click="home()" class="nav-item {{position.one}}">
+                            <a class="nav-link" href="#!/">Главная</a>
+                        </li>
+                        <li class="nav-item {{position.two}}">
+                            <a class="nav-link" href="#!/reg">Регистрация</a>
+                        </li>
+                        <li ng-show="navbar.logout" class="nav-item {{position.three}}">
+                            <a class="nav-link" href="#!/singin">Авторизация</a>
+                        </li>
+                        <li ng-hide="navbar.logout" class="nav-item">
+                            <a ng-click="clickOut()" class="nav-link" href="#!/">Выйти</a>
+                        </li>
+                        <li class="nav-item {{position.four}}">
+                            <a class="nav-link" href="#!/admin">Управление</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
         <div  ng-hide="alert.hide" class="alert {{alert.class}}"  role="alert">
             <button ng-click="clickAlert()" type="button" class="close" aria-label="Close">
                 <span>&times;</span>
