@@ -1,52 +1,84 @@
 <div ng-controller="AdminCrt">
     <div class="jumbotron">
-            <h1>Управление</h1>
+        <h1>Управление</h1>
     </div>
     <div ng-show="auth">
-        <div class="row">
-            <h2>Добавить компьютер</h2>
+        <div ng-show="showControl">
+
+            <div class="card text-center mb-3">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="">Настройки</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Таймер</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="">Другое</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Настроить {{controll.name}}</h4>
+                    <p class="card-text">Настроить IP</p>
+                    <div class="form-group">
+                        <label for="controllIP" class="sr-only">IP</label>
+                        <input ng-model="computerIp" type="text" class="form-control" id="controllIP" placeholder="IP">
+                    </div>
+                    <a href="" class="btn btn-primary">Изменить</a>
+                    <a href="" class="btn btn-success">Включить</a>
+                </div>
+            </div>
+
         </div>
-        <div class="row">
-            <form class="form-inline">
+        <div class="card text-center mb-3">
+            <div class="card-body">
+                <h4 class="card-title">Добавить компьютер</h4>
                 <div class="form-group">
-                    <label for="inputName" class="sr-only">Название</label>
-                    <input ng-model="computerName" type="text" class="form-control" id="inputName" placeholder="Название">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="inputName" class="sr-only">Название</label>
+                            <input ng-model="computerName" type="text" class="form-control" id="inputName" placeholder="Название">
+                        </div>
+                        <div class="form-group mx-sm-3">
+                            <label for="inputIP" class="sr-only">IP</label>
+                            <input ng-model="computerIp" type="text" class="form-control" id="inputIP" placeholder="IP">
+                        </div>
+                        <button ng-click="addComputer()" type="submit" class="btn btn-primary">Добавить компьютер</button>
+                    </form>
                 </div>
-                <div class="form-group mx-sm-3">
-                    <label for="inputIP" class="sr-only">IP</label>
-                    <input ng-model="computerIp" type="text" class="form-control" id="inputIP" placeholder="IP">
-                </div>
-                <button ng-click="addComputer()" type="submit" class="btn btn-primary">Добавить компьютер</button>
-            </form>
+            </div>
         </div>
+
         <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Название</th>
-            <th>IP</th>
-            <th>Статус</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="comp in computers">
-            <th scope="row">{{comp.id}}</th>
-            <td>{{comp.name}}</td>
-            <td>{{comp.ip}}</td>
-            <td>{{comp.status}}</td>
-        </tr>
-       <!-- <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>-->
-        </tbody>
-    </table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Название</th>
+                <th>IP</th>
+                <th>Статус</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="comp in computers" ng-click="alert(comp)">
+                <th scope="row">{{computers.indexOf(comp)+1}}</th>
+                <td>{{comp.name}}</td>
+                <td>{{comp.ip}}</td>
+                <td><span class="badge badge-danger">{{comp.status}}</span></td>
+            </tr>
+            <!-- <tr>
+                 <th scope="row">2</th>
+                 <td>Jacob</td>
+                 <td>Thornton</td>
+                 <td>@fat</td>
+             </tr>
+             <tr>
+                 <th scope="row">3</th>
+                 <td colspan="2">Larry the Bird</td>
+                 <td>@twitter</td>
+             </tr>-->
+            </tbody>
+        </table>
     </div>
 </div>

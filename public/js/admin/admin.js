@@ -2,6 +2,7 @@ angular.module('AdminApp',[])
     .controller('AdminCrt', function ($scope, $rootScope, $http, $location) {
         $rootScope.navpos(4);
         $scope.auth=false;
+        $scope.showControl = false;
         if($rootScope.user){
             if($rootScope.user.auth){
                 $scope.auth=true;
@@ -38,6 +39,12 @@ angular.module('AdminApp',[])
                         }
                     });
 
+                };
+
+                $scope.alert = function (comp) {
+                    console.log(comp);
+                    $scope.showControl = true;
+                    $scope.controll = comp;
                 }
 
             } else {
