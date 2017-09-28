@@ -10,32 +10,32 @@
             <form class="form-inline">
                 <div class="form-group">
                     <label for="inputName" class="sr-only">Название</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Название">
+                    <input ng-model="computerName" type="text" class="form-control" id="inputName" placeholder="Название">
                 </div>
                 <div class="form-group mx-sm-3">
                     <label for="inputIP" class="sr-only">IP</label>
-                    <input type="text" class="form-control" id="inputIP" placeholder="IP">
+                    <input ng-model="computerIp" type="text" class="form-control" id="inputIP" placeholder="IP">
                 </div>
-                <button type="submit" class="btn btn-primary">Добавить компьютер</button>
+                <button ng-click="addComputer()" type="submit" class="btn btn-primary">Добавить компьютер</button>
             </form>
         </div>
         <table class="table table-hover">
         <thead>
         <tr>
             <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>Название</th>
+            <th>IP</th>
+            <th>Статус</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+        <tr ng-repeat="comp in computers">
+            <th scope="row">{{comp.id}}</th>
+            <td>{{comp.name}}</td>
+            <td>{{comp.ip}}</td>
+            <td>{{comp.status}}</td>
         </tr>
-        <tr>
+       <!-- <tr>
             <th scope="row">2</th>
             <td>Jacob</td>
             <td>Thornton</td>
@@ -45,7 +45,7 @@
             <th scope="row">3</th>
             <td colspan="2">Larry the Bird</td>
             <td>@twitter</td>
-        </tr>
+        </tr>-->
         </tbody>
     </table>
     </div>

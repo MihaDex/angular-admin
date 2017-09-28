@@ -33,5 +33,18 @@ if(isset($_POST['type']) && isset($_POST['token']) && $_POST['type']==='getcompu
         echo json_encode(["auth"=>true, "computers"=>$getComputers]);
     }
 }
+if(isset($_POST['type']) && isset($_POST['token']) && $_POST['name'] && $_POST['ip'] && $_POST['type']==='addcomputer') {
+    if($computers->addComputer($_POST['ip'], $_POST['name'], $_POST['token'])) {
+        $getComputers = $computers->getComputers($_POST['token']);
+        if ($getComputers === false) {
+            echo json_encode(["auth" => false]);
+        } else {
+            echo json_encode(["auth" => true, "computers" => $getComputers]);
+        }
+    } else {
+        echo json_encode(["auth" => false]);
+    }
+}
 
+//var_dump($computers->addComputer("test", "test", "qc0woiz65fhh2yzzk"));
 //echo json_encode($_POST);

@@ -11,10 +11,8 @@ class Computers extends Db
         if(!$userId) {
             return false;
         } else {
-            $STH = $this->DBH->prepare('insert into computers set(ip, name, status, user_id) values(?,?,?,?)');
-            if($STH->execute([$ip,$name,$status,$userId])){
-                return true;
-            } else return false;
+            $STH = $this->DBH->prepare('insert into computers (ip, name, status, user_id) values(?,?,?,?)');
+            return $STH->execute([$ip, $name, $status, $userId]);
         }
     }
     public function editComputer() {}

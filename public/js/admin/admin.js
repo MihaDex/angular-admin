@@ -12,12 +12,34 @@ angular.module('AdminApp',[])
                 $http.post('/server/index.php', data).then(function (resp) {
                     if (resp.data.auth) {
                         console.log(resp.data);
+                        $scope.computers = resp.data.computers;
                     } else {
                         $rootScope.alert (0, "Необходима повторная авторизация!");
                         $rootScope.clickOut();
                         $location.path('/singin');
                     }
-                })
+                });
+
+                $scope.addComputer = function () {
+                    var data = {
+                        type: "addcomputer",
+                        name: $scope.computerName,
+                        ip: $scope.computerIp,
+                        token: $rootScope.user.token
+                    };
+                    $http.post('/server/index.php', data).then(function (resp) {
+                        if (resp.data.auth) {
+                            console.log(resp.data);
+                            $scope.computers = resp.data.computers;
+                        } else {
+                            $rootScope.alert (0, "Необходима повторная авторизация!");
+                            $rootScope.clickOut();
+                            $location.path('/singin');
+                        }
+                    });
+
+                }
+
             } else {
                 $rootScope.alert (0, "Для начала работы пройдите авторизацию!");
             }
